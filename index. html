@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fatima Studio | Yoga, Sound Sanctuary & Mindful Movement</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sand: {
+              50: '#faf8f5',
+              100: '#f4eee3',
+              200: '#e8ded0',
+              300: '#d8c7b3',
+              700: '#594a3d',
+              900: '#26201a'
+            },
+            terracotta: {
+              400: '#e08b68',
+              500: '#c86843',
+              600: '#aa502e'
+            },
+            sage: {
+              50: '#f4f6f4',
+              100: '#e2ebe2',
+              300: '#b0c4b2',
+              600: '#4e6f53',
+              700: '#3c5a41',
+              800: '#2d4532',
+              900: '#1a2c1e'
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-sand-50 text-stone-800 bg-grain selection:bg-sage-100 selection:text-sage-900">
+
+  <!-- Canvas for celebration confetti -->
+  <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+  <!-- TOP PROMO BANNER -->
+  <div class="bg-sage-900 text-sand-100 text-xs py-2 px-4 text-center font-medium tracking-wide flex items-center justify-center gap-2">
+    <span class="inline-block w-2 h-2 rounded-full bg-terracotta-400 animate-ping"></span>
+    <span><strong>Fatima Studio New Yogi Welcome:</strong> 7-Day Unlimited Intro Pass for $39 (50% Off) • Use code <span class="bg-sage-800 text-terracotta-400 px-1.5 py-0.5 rounded font-mono font-bold tracking-wider">FATIMA20</span> for 20% off!</span>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 glass-panel border-b border-sand-200/80 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full bg-sage-800 text-sand-100 flex items-center justify-center shadow-md transition-transform duration-300 group-hover:scale-105">
+          <!-- Lotus / Crescent Moon Emblem -->
+          <svg class="w-6 h-6 text-sand-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M12 3C12 3 7 8 7 13C7 16.5 9.5 19 12 19C14.5 19 17 16.5 17 13C17 8 12 3 12 3Z"/>
+            <path d="M5 13C3 15 3 17.5 4.5 19C6 20.5 8.5 20.5 11 19"/>
+            <path d="M19 13C21 15 21 17.5 19.5 19C18 20.5 15.5 20.5 13 19"/>
+          </svg>
+        </div>
+        <div>
+          <span class="text-2xl font-serif font-bold tracking-widest text-stone-900 block leading-tight">FATIMA STUDIO</span>
+          <span class="text-[10px] tracking-[0.22em] uppercase text-stone-500 font-semibold block">Yoga & Sound Sanctuary</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-stone-600">
+        <a href="#about" class="hover:text-sage-800 transition-colors">The Sanctuary</a>
+        <a href="#classes" class="hover:text-sage-800 transition-colors">Class Styles</a>
+        <a href="#interactive-journey" class="text-terracotta-500 font-semibold hover:text-terracotta-600 transition-colors flex items-center gap-1">
+          <span>Find Your Practice</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-terracotta-500"></span>
+        </a>
+        <a href="#instructors" class="hover:text-sage-800 transition-colors">Guides</a>
+        <a href="#faq" class="hover:text-sage-800 transition-colors">FAQ</a>
+      </nav>
+
+      <!-- Right Header Actions -->
+      <div class="flex items-center gap-3">
+        <!-- Ambient Sound Toggle -->
+        <button id="btn-ambient-sound" class="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium rounded-full border border-sand-300 bg-white/70 hover:bg-white text-stone-700 transition shadow-sm" title="Toggle 432Hz ambient Tibetan bowl sound">
+          <i data-lucide="volume-x" class="w-4 h-4 text-stone-500"></i>
+          <span class="hidden sm:inline">Ambient: Off</span>
+        </button>
+
+        <!-- CTA Button -->
+        <a href="#interactive-journey" class="scroll-to-journey inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-sage-800 hover:bg-sage-900 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+          <span>Book Intro Pass</span>
+          <i data-lucide="sparkles" class="w-4 h-4 text-terracotta-400"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+    <!-- Ambient background soft gradient orbs -->
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[850px] h-[450px] bg-gradient-to-tr from-sage-100/60 via-sand-200/50 to-terracotta-400/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand-200/70 border border-sand-300 text-xs font-semibold text-stone-700 tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-sage-600"></span>
+            <span>Welcome to Fatima Studio • Mindful Movement & Sound Therapy</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-stone-900 tracking-tight leading-[1.15]">
+            Return to Your Breath.<br>
+            <span class="italic font-normal text-terracotta-500">Find Stillness</span> in Sacred Flow.
+          </h1>
+
+          <p class="text-base sm:text-lg text-stone-600 max-w-xl font-normal leading-relaxed">
+            Step away from the rush. Fatima Studio is an organic, sunlit haven designed to reset your nervous system through intuitive Vinyasa, deep Yin restoration, 432Hz crystal sound baths, and conscious breathwork.
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <a href="#interactive-journey" class="scroll-to-journey inline-flex justify-center items-center gap-2.5 px-7 py-3.5 rounded-full text-base font-semibold text-white bg-terracotta-500 hover:bg-terracotta-600 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+              <span>Find Your Practice (5 Steps)</span>
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+            
+            <a href="#breathing-pause" class="inline-flex justify-center items-center gap-2 px-6 py-3.5 rounded-full text-base font-medium text-stone-700 bg-white hover:bg-sand-100 border border-sand-300 shadow-sm transition">
+              <i data-lucide="wind" class="w-4 h-4 text-sage-600"></i>
+              <span>Take a 60s Breath</span>
+            </a>
+          </div>
+
+          <!-- Social Proof & Badges -->
+          <div class="pt-6 border-t border-sand-200/90 grid grid-cols-3 gap-4 max-w-lg">
+            <div>
+              <div class="text-2xl font-serif font-bold text-stone-900">3,800+</div>
+              <div class="text-xs text-stone-500 font-medium">Practices Guided</div>
+            </div>
+            <div>
+              <div class="text-2xl font-serif font-bold text-stone-900 flex items-center gap-1">
+                4.98 <span class="text-amber-500 text-sm">★★★★★</span>
+              </div>
+              <div class="text-xs text-stone-500 font-medium">260+ Verified Reviews</div>
+            </div>
+            <div>
+              <div class="text-2xl font-serif font-bold text-stone-900">E-RYT 500</div>
+              <div class="text-xs text-stone-500 font-medium">Certified Senior Guides</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero Visual Collage -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            
+            <!-- Main Hero Image Card -->
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] bg-sand-200">
+              <img 
+                src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=1000&q=80" 
+                alt="Serene yoga posture at Fatima Studio" 
+                class="w-full h-full object-cover"
+                loading="eager"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent"></div>
+              
+              <div class="absolute bottom-6 left-6 right-6 text-white">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold mb-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Studio Atmosphere
+                </span>
+                <h3 class="text-xl font-serif font-medium">Fatima's Crystal Sound & Restorative Sanctuary</h3>
+                <p class="text-xs text-sand-200 mt-1">Infrared warmth • Live singing bowls • Organic herbal tea</p>
+              </div>
+            </div>
+
+            <!-- Floating Badge: Heated Infrared -->
+            <div class="absolute -top-4 -left-6 glass-panel px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce" style="animation-duration: 4s;">
+              <div class="w-10 h-10 rounded-xl bg-terracotta-500/10 text-terracotta-500 flex items-center justify-center">
+                <i data-lucide="flame" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-stone-900">Infrared Radiance</p>
+                <p class="text-[11px] text-stone-500">Cellular detox & joint ease</p>
+              </div>
+            </div>
+
+            <!-- Floating Badge: Free Jade Mat -->
+            <div class="absolute -bottom-5 -right-5 glass-panel px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-sage-800 text-white flex items-center justify-center">
+                <i data-lucide="check" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-stone-900">Complimentary Mat</p>
+                <p class="text-[11px] text-stone-500">Jade eco rubber reserved for you</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE EXPERIENTIAL SECTION: MINDFUL BREATHING -->
+  <section id="breathing-pause" class="py-16 bg-sand-100/70 border-y border-sand-200">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-sand-300 text-xs font-semibold text-sage-800 mb-3">
+        <i data-lucide="heart" class="w-3.5 h-3.5 text-terracotta-500"></i>
+        <span>Experiential Mindfulness</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-serif font-bold text-stone-900">Fatima's 60-Second Centering Breath</h2>
+      <p class="text-sm text-stone-600 max-w-lg mx-auto mt-2">
+        Before you choose your class, ground yourself with our 4-7-8 rhythm: Inhale deeply, hold gently, and exhale all tension.
+      </p>
+
+      <!-- Breathing Widget Orb -->
+      <div class="mt-8 flex flex-col items-center justify-center">
+        <div id="breathing-circle-orb" class="w-40 h-40 sm:w-48 sm:h-48 rounded-full border-4 border-sage-600 bg-sage-50/50 flex flex-col items-center justify-center transition-all duration-1000 shadow-inner">
+          <span id="breath-phase-text" class="text-sm font-semibold text-stone-800">Pause & Center</span>
+          <span id="breath-timer-text" class="text-2xl sm:text-3xl font-serif font-bold text-sage-800 mt-1">Ready</span>
+          <span id="breath-cycle-count" class="text-[10px] text-stone-500 uppercase tracking-widest mt-1">0 cycles complete</span>
+        </div>
+
+        <button id="btn-toggle-breathing" class="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold bg-white border border-sand-300 hover:bg-sand-50 text-stone-800 shadow-sm transition">
+          <i data-lucide="play" class="w-4 h-4 text-sage-700"></i>
+          <span>Start Fatima Centering Breath</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       THE MAIN MULTI-STEP INTERACTIVE FUNNEL SECTION
+       ========================================================================= -->
+  <section id="interactive-journey" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Heading -->
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-terracotta-500/10 text-terracotta-600 text-xs font-bold tracking-wide uppercase">
+        Personalized Onboarding & Pass Booking
+      </span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-stone-900 mt-3">
+        Find Your Sacred Practice in 5 Steps
+      </h2>
+      <p class="text-stone-600 text-base mt-3">
+        Tell us your intention, and Fatima Studio will match you with the ideal class, time slot, and intro pass.
+      </p>
+    </div>
+
+    <!-- Multi-Step Stepper Progress Bar -->
+    <div class="mb-10 max-w-4xl mx-auto">
+      <div class="relative">
+        <!-- Background track -->
+        <div class="absolute top-1/2 left-0 w-full h-1 bg-sand-200 -translate-y-1/2 rounded-full -z-10"></div>
+        <!-- Active Progress Fill -->
+        <div id="step-progress-fill" class="absolute top-1/2 left-0 h-1 bg-terracotta-500 -translate-y-1/2 rounded-full transition-all duration-500 -z-10" style="width: 0%;"></div>
+
+        <!-- 5 Steps Indicators -->
+        <div class="flex justify-between items-center text-center">
+          
+          <!-- Step 1 -->
+          <div class="step-indicator-item flex flex-col items-center group cursor-pointer" data-jump-step="1">
+            <div class="step-circle w-10 h-10 rounded-full border-2 bg-terracotta-500 text-white border-terracotta-500 flex items-center justify-center font-bold text-sm shadow-md transition-all duration-300 ring-4 ring-terracotta-500/20">
+              1
+            </div>
+            <span class="step-label text-xs mt-2 font-bold text-terracotta-500">Intention</span>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-indicator-item flex flex-col items-center group" data-jump-step="2">
+            <div class="step-circle w-10 h-10 rounded-full border-2 bg-white text-stone-400 border-stone-300 flex items-center justify-center font-bold text-sm shadow-sm transition-all duration-300">
+              2
+            </div>
+            <span class="step-label text-xs mt-2 text-stone-400">Class & Time</span>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-indicator-item flex flex-col items-center group" data-jump-step="3">
+            <div class="step-circle w-10 h-10 rounded-full border-2 bg-white text-stone-400 border-stone-300 flex items-center justify-center font-bold text-sm shadow-sm transition-all duration-300">
+              3
+            </div>
+            <span class="step-label text-xs mt-2 text-stone-400">Perks</span>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-indicator-item flex flex-col items-center group" data-jump-step="4">
+            <div class="step-circle w-10 h-10 rounded-full border-2 bg-white text-stone-400 border-stone-300 flex items-center justify-center font-bold text-sm shadow-sm transition-all duration-300">
+              4
+            </div>
+            <span class="step-label text-xs mt-2 text-stone-400">Pass Tier</span>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="step-indicator-item flex flex-col items-center group" data-jump-step="5">
+            <div class="step-circle w-10 h-10 rounded-full border-2 bg-white text-stone-400 border-stone-300 flex items-center justify-center font-bold text-sm shadow-sm transition-all duration-300">
+              5
+            </div>
+            <span class="step-label text-xs mt-2 text-stone-400">Confirm</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Alert Banner -->
+    <div id="step-validation-error" class="hidden max-w-4xl mx-auto mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm font-medium flex items-center gap-2"></div>
+
+    <!-- Main Funnel Grid Container -->
+    <div id="step-content-area" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Interactive Step Card (7 cols) -->
+      <div class="lg:col-span-8 bg-white p-6 sm:p-8 rounded-3xl shadow-lg border border-sand-200">
+        
+        <!-- STEP 1: INTENTION & FOUNDATION -->
+        <div id="step-pane-1" class="step-pane active space-y-8">
+          <div>
+            <span class="text-xs font-bold text-terracotta-500 uppercase tracking-widest">Step 1 of 5</span>
+            <h3 class="text-2xl font-serif font-bold text-stone-900 mt-1">What brings your spirit to Fatima Studio?</h3>
+            <p class="text-sm text-stone-500 mt-1">Choose the primary intention for your practice.</p>
+          </div>
+
+          <!-- Intention Cards Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <div class="selectable-card selected p-4 rounded-2xl bg-sand-50 border-2" data-intention="calm">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-xl bg-sage-100 text-sage-800 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="moon" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-stone-900 text-sm">Nervous System Reset</h4>
+                  <p class="text-xs text-stone-500 mt-1">Stress relief, restorative yin, soothing sound baths, and somatic calm.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="selectable-card p-4 rounded-2xl bg-sand-50 border-2" data-intention="flexibility">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-xl bg-sand-200 text-stone-700 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="activity" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-stone-900 text-sm">Spine & Hip Mobility</h4>
+                  <p class="text-xs text-stone-500 mt-1">Deep fascia release, mindful unkinking, opening tight shoulders and back.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="selectable-card p-4 rounded-2xl bg-sand-50 border-2" data-intention="strength">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-xl bg-terracotta-500/10 text-terracotta-500 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="flame" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-stone-900 text-sm">Dynamic Flow & Sweat</h4>
+                  <p class="text-xs text-stone-500 mt-1">Empowering solar vinyasa, core strength, infrared detox, and endurance.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="selectable-card p-4 rounded-2xl bg-sand-50 border-2" data-intention="breath">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="wind" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-stone-900 text-sm">Breathwork & Stillness</h4>
+                  <p class="text-xs text-stone-500 mt-1">Pranayama methods, meditation, clearing brain fog, and energetic realignment.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Experience Level Selector -->
+          <div class="pt-6 border-t border-sand-200">
+            <h4 class="text-sm font-bold text-stone-800 mb-3">Your experience on the yoga mat:</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="selectable-card selected p-3 rounded-xl bg-sand-50 border-2 text-center" data-experience="beginner">
+                <p class="text-xs font-bold text-stone-900">First-Time / Beginner</p>
+                <p class="text-[11px] text-stone-500 mt-0.5">Gentle guidance & props</p>
+              </div>
+              <div class="selectable-card p-3 rounded-xl bg-sand-50 border-2 text-center" data-experience="intermediate">
+                <p class="text-xs font-bold text-stone-900">Occasional Yogi</p>
+                <p class="text-[11px] text-stone-500 mt-0.5">Familiar with basic flow</p>
+              </div>
+              <div class="selectable-card p-3 rounded-xl bg-sand-50 border-2 text-center" data-experience="advanced">
+                <p class="text-xs font-bold text-stone-900">Seasoned Practitioner</p>
+                <p class="text-[11px] text-stone-500 mt-0.5">Deepening practice & forms</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Studio Temperature / Atmosphere -->
+          <div class="pt-4 border-t border-sand-200">
+            <h4 class="text-sm font-bold text-stone-800 mb-3">Preferred Room Atmosphere:</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="selectable-card p-3 rounded-xl bg-sand-50 border-2 text-center" data-atmosphere="ambient">
+                <p class="text-xs font-bold text-stone-900">Natural Room Temp (74°F)</p>
+                <p class="text-[11px] text-stone-500 mt-0.5">Gentle breeze, HEPA fresh</p>
+              </div>
+              <div class="selectable-card selected p-3 rounded-xl bg-sand-50 border-2 text-center" data-atmosphere="warm">
+                <p class="text-xs font-bold text-stone-900">Warm Infrared (82°F - 90°F)</p>
+                <p class="text-[11px] text-stone-500 mt-0.5">Deep muscular relaxation</p>
+              </div>
+              <div class="selectable-card p-3 rounded-xl bg-sand-50 border-2 text-center" data-atmosphere="candlelight">
+                <p class="text-xs font-bold text-stone-900">Candlelight & Aromas</p>
+                <p class="text-[11px] text-stone-500 mt-0.5">Dimmed cozy evening glow</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- STEP 2: CLASS STYLE & SCHEDULE -->
+        <div id="step-pane-2" class="step-pane space-y-6">
+          <div>
+            <span class="text-xs font-bold text-terracotta-500 uppercase tracking-widest">Step 2 of 5</span>
+            <h3 class="text-2xl font-serif font-bold text-stone-900 mt-1">Recommended Sessions for Your Intention</h3>
+            <p class="text-sm text-stone-500 mt-1">Fatima Studio matches you with curated classes and available guides.</p>
+          </div>
+
+          <!-- Date Selector Tabs -->
+          <div class="flex items-center gap-2 overflow-x-auto pb-2">
+            <button type="button" class="date-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition" data-date="Today, Nov 12">
+              Today (Nov 12)
+            </button>
+            <button type="button" class="date-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-sage-800 text-white shadow-sm transition" data-date="Tomorrow, Nov 13">
+              Tomorrow (Nov 13)
+            </button>
+            <button type="button" class="date-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition" data-date="Saturday, Nov 15">
+              Saturday (Nov 15)
+            </button>
+            <button type="button" class="date-tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition" data-date="Sunday, Nov 16">
+              Sunday (Nov 16)
+            </button>
+          </div>
+
+          <!-- Dynamic Class Cards Container (Injected by script.js) -->
+          <div id="class-cards-container" class="space-y-4">
+            <!-- Classes dynamically rendered here -->
+          </div>
+        </div>
+
+        <!-- STEP 3: STUDIO PERKS & CUSTOMIZATIONS -->
+        <div id="step-pane-3" class="step-pane space-y-6">
+          <div>
+            <span class="text-xs font-bold text-terracotta-500 uppercase tracking-widest">Step 3 of 5</span>
+            <h3 class="text-2xl font-serif font-bold text-stone-900 mt-1">Enhance Your Studio Experience</h3>
+            <p class="text-sm text-stone-500 mt-1">Tailor your visit with organic apothecary refreshments and personal amenities.</p>
+          </div>
+
+          <div class="space-y-3">
+            
+            <!-- Free Mat (Included) -->
+            <div class="selectable-card selected p-4 rounded-2xl bg-sand-50 border-2 flex items-center justify-between" data-perk="mat">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-sage-100 text-sage-800 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-stone-900 text-sm">Complimentary Jade Eco Rubber Mat & Bolster</h4>
+                  <p class="text-xs text-stone-500">Non-toxic, high-grip natural tree rubber sanitized before your arrival.</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-sage-100 text-sage-800">FREE</span>
+              </div>
+            </div>
+
+            <!-- Post-Class Botanical Elixir -->
+            <div class="selectable-card p-4 rounded-2xl bg-sand-50 border-2 flex items-center justify-between" data-perk="elixir">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="coffee" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-stone-900 text-sm">Post-Class Golden Milk or Cold-Pressed Tonic</h4>
+                  <p class="text-xs text-stone-500">Fresh turmeric, ginger, organic coconut milk from Fatima's Apothecary Bar.</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="text-sm font-bold text-stone-800">+$5</span>
+                <span class="block text-[10px] text-stone-500">Apothecary</span>
+              </div>
+            </div>
+
+            <!-- Alignment Tune-up -->
+            <div class="selectable-card p-4 rounded-2xl bg-sand-50 border-2 flex items-center justify-between" data-perk="alignment">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-terracotta-500/10 text-terracotta-500 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="user-check" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-stone-900 text-sm">15-Minute 1-on-1 Alignment Check</h4>
+                  <p class="text-xs text-stone-500">Personalized posture assessment before class to protect wrists, lower back & neck.</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="text-sm font-bold text-stone-800">+$15</span>
+                <span class="block text-[10px] text-stone-500">Private Guidance</span>
+              </div>
+            </div>
+
+            <!-- Reserved Front Placement -->
+            <div class="selectable-card p-4 rounded-2xl bg-sand-50 border-2 flex items-center justify-between" data-perk="frontrow">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-sand-200 text-stone-700 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="sparkles" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-stone-900 text-sm">Reserved Front Row / Sunlit Window Space</h4>
+                  <p class="text-xs text-stone-500">Enjoy unobstructed sound waves from singing bowls and direct natural light.</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-stone-200 text-stone-700">FREE</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- STEP 4: PASS TIER & PROMO CODE -->
+        <div id="step-pane-4" class="step-pane space-y-6">
+          <div>
+            <span class="text-xs font-bold text-terracotta-500 uppercase tracking-widest">Step 4 of 5</span>
+            <h3 class="text-2xl font-serif font-bold text-stone-900 mt-1">Select Your Fatima Studio Pass</h3>
+            <p class="text-sm text-stone-500 mt-1">Try our most loved trial or select a flexible multi-class journey.</p>
+          </div>
+
+          <!-- Passes Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <!-- Tier 1: Single Session -->
+            <div class="selectable-card p-5 rounded-2xl bg-sand-50 border-2 relative" data-tier="single">
+              <h4 class="font-bold text-stone-900 text-base">Welcome Single Session</h4>
+              <p class="text-xs text-stone-500 mt-1">Perfect for a single visit or drop-in practice.</p>
+              <div class="mt-4 flex items-baseline gap-2">
+                <span class="text-3xl font-serif font-bold text-stone-900">$24</span>
+                <span class="text-xs text-stone-400 line-through">$30</span>
+              </div>
+              <ul class="mt-3 space-y-1.5 text-xs text-stone-600">
+                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sage-700"></i> Jade Eco Mat included</li>
+                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sage-700"></i> Full access to locker lounge</li>
+              </ul>
+            </div>
+
+            <!-- Tier 2: 7-Day Intro (Featured) -->
+            <div class="selectable-card selected-terracotta p-5 rounded-2xl bg-sand-50 border-2 relative shadow-md ring-2 ring-terracotta-500/20" data-tier="intro-7day">
+              <div class="absolute -top-3 right-4 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-terracotta-500 text-white uppercase tracking-wider">
+                Most Loved • 50% Off
+              </div>
+              <h4 class="font-bold text-stone-900 text-base">7-Day Unlimited Intro Pass</h4>
+              <p class="text-xs text-stone-500 mt-1">Unlimited classes for 7 days to explore all styles.</p>
+              <div class="mt-4 flex items-baseline gap-2">
+                <span class="text-3xl font-serif font-bold text-terracotta-500">$39</span>
+                <span class="text-xs text-stone-400 line-through">$78</span>
+              </div>
+              <ul class="mt-3 space-y-1.5 text-xs text-stone-600">
+                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-terracotta-500"></i> Unlimited practice across all schedules</li>
+                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-terracotta-500"></i> 1 Free Friend / Guest Pass included</li>
+                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-terracotta-500"></i> Free mat & herbal tea service</li>
+              </ul>
+            </div>
+
+            <!-- Tier 3: 5-Class Pack -->
+            <div class="selectable-card p-5 rounded-2xl bg-sand-50 border-2 relative" data-tier="pack-5">
+              <h4 class="font-bold text-stone-900 text-base">5-Class Journey Pass</h4>
+              <p class="text-xs text-stone-500 mt-1">Flexible practice with no rush.</p>
+              <div class="mt-4 flex items-baseline gap-2">
+                <span class="text-3xl font-serif font-bold text-stone-900">$95</span>
+                <span class="text-xs text-stone-400 line-through">$120</span>
+              </div>
+              <ul class="mt-3 space-y-1.5 text-xs text-stone-600">
+                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sage-700"></i> 3-month generous expiry</li>
+                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sage-700"></i> Shareable with family or friend</li>
+              </ul>
+            </div>
+
+            <!-- Tier 4: Sanctuary Membership -->
+            <div class="selectable-card p-5 rounded-2xl bg-sand-50 border-2 relative" data-tier="monthly">
+              <h4 class="font-bold text-stone-900 text-base">Fatima Sanctuary Member</h4>
+              <p class="text-xs text-stone-500 mt-1">The ultimate holistic lifestyle membership.</p>
+              <div class="mt-4 flex items-baseline gap-2">
+                <span class="text-3xl font-serif font-bold text-stone-900">$149<span class="text-xs font-normal text-stone-500">/mo</span></span>
+                <span class="text-xs text-stone-400 line-through">$189</span>
+              </div>
+              <ul class="mt-3 space-y-1.5 text-xs text-stone-600">
+                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sage-700"></i> Unlimited classes daily</li>
+                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sage-700"></i> 20% off retreats & sound ceremonies</li>
+                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-sage-700"></i> Dedicated private locker</li>
+              </ul>
+            </div>
+
+          </div>
+
+          <!-- Promo Code Box -->
+          <div class="pt-6 border-t border-sand-200">
+            <h4 class="text-xs font-bold text-stone-700 uppercase tracking-wider mb-2">Have a Fatima Studio Promo Code?</h4>
+            <div class="flex gap-2 max-w-md">
+              <input 
+                type="text" 
+                id="input-promo-code" 
+                placeholder="e.g. FATIMA20 or NAMASTE10" 
+                class="flex-1 px-4 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:ring-2 focus:ring-sage-700 uppercase"
+              />
+              <button 
+                type="button" 
+                id="btn-apply-promo" 
+                class="px-5 py-2.5 rounded-xl bg-sage-800 text-white text-xs font-bold hover:bg-sage-900 transition"
+              >
+                Apply
+              </button>
+            </div>
+            <div id="promo-status-msg" class="text-xs mt-1"></div>
+            <p class="text-[11px] text-stone-400 mt-1">Try promo code <strong class="text-terracotta-500">FATIMA20</strong> for an instant 20% discount!</p>
+          </div>
+
+        </div>
+
+        <!-- STEP 5: PRACTITIONER DETAILS & CONFIRMATION -->
+        <div id="step-pane-5" class="step-pane space-y-6">
+          <div>
+            <span class="text-xs font-bold text-terracotta-500 uppercase tracking-widest">Step 5 of 5</span>
+            <h3 class="text-2xl font-serif font-bold text-stone-900 mt-1">Practitioner Details & Confirmation</h3>
+            <p class="text-sm text-stone-500 mt-1">Your digital pass will be instantly generated and emailed to you.</p>
+          </div>
+
+          <!-- Form Fields -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-stone-700 mb-1" for="input-first-name">First Name *</label>
+              <input type="text" id="input-first-name" placeholder="Fatima" class="w-full px-4 py-2.5 rounded-xl border border-sand-300 text-sm focus:ring-2 focus:ring-sage-700 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-stone-700 mb-1" for="input-last-name">Last Name *</label>
+              <input type="text" id="input-last-name" placeholder="Al-Mansoor" class="w-full px-4 py-2.5 rounded-xl border border-sand-300 text-sm focus:ring-2 focus:ring-sage-700 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-stone-700 mb-1" for="input-email">Email Address *</label>
+              <input type="email" id="input-email" placeholder="fatima@example.com" class="w-full px-4 py-2.5 rounded-xl border border-sand-300 text-sm focus:ring-2 focus:ring-sage-700 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-stone-700 mb-1" for="input-phone">Mobile Phone (for SMS reminders)</label>
+              <input type="tel" id="input-phone" placeholder="+1 (555) 234-5678" class="w-full px-4 py-2.5 rounded-xl border border-sand-300 text-sm focus:ring-2 focus:ring-sage-700 focus:outline-none">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-stone-700 mb-1" for="input-notes">Any physical notes or mindful considerations? (Optional)</label>
+            <textarea id="input-notes" rows="2" placeholder="e.g. Lower back sensitivity, wrist care, first yoga class, pregnancy..." class="w-full px-4 py-2.5 rounded-xl border border-sand-300 text-sm focus:ring-2 focus:ring-sage-700 focus:outline-none"></textarea>
+          </div>
+
+          <!-- Order Summary Card in Step 5 -->
+          <div class="p-4 rounded-2xl bg-sand-100/80 border border-sand-200 space-y-2">
+            <h4 class="text-xs font-bold text-stone-700 uppercase tracking-wider">Your Booking Snapshot:</h4>
+            <div class="flex justify-between text-xs text-stone-700">
+              <span class="font-medium" id="review-pass-name">7-Day Unlimited Intro Pass</span>
+              <span class="font-bold text-stone-900" id="review-total-cost">$39.00</span>
+            </div>
+            <div class="text-xs text-stone-500">
+              <p id="review-class-title">Candlelight Yin & Crystal Sound Bath</p>
+              <p id="review-date-time" class="text-sage-800 font-medium">Tomorrow, Nov 13 • 09:30 AM</p>
+            </div>
+          </div>
+
+          <!-- Terms & Agreement Checkbox -->
+          <div class="flex items-start gap-3 pt-2">
+            <input type="checkbox" id="check-terms" checked class="mt-1 w-4 h-4 rounded text-sage-800 focus:ring-sage-700">
+            <label for="check-terms" class="text-xs text-stone-600 leading-relaxed cursor-pointer">
+              I agree to the Fatima Studio wellness guidelines and understand that mats are sanitized and reserved for me. I can reschedule up to 2 hours before class.
+            </label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sticky Live Order Summary & Step Navigation (4 cols) -->
+      <div class="lg:col-span-4 sticky top-28 space-y-6">
+        
+        <div class="bg-white p-6 rounded-3xl shadow-lg border border-sand-200 space-y-5">
+          <div class="flex items-center justify-between pb-4 border-b border-sand-200">
+            <h3 class="font-serif font-bold text-lg text-stone-900">Your Journey Summary</h3>
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-sage-100 text-sage-800">
+              Live Rate
+            </span>
+          </div>
+
+          <!-- Selected Pass Tier -->
+          <div>
+            <span class="text-[11px] text-stone-400 uppercase font-bold tracking-wider">Selected Pass:</span>
+            <div class="flex justify-between items-baseline mt-0.5">
+              <span id="summary-tier-name" class="font-bold text-stone-900 text-sm">7-Day Unlimited Intro Pass</span>
+              <div>
+                <span id="summary-tier-price" class="font-serif font-bold text-lg text-stone-900">$39</span>
+                <span id="summary-tier-original" class="text-xs text-stone-400 line-through ml-1">$78</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Selected Class & Schedule -->
+          <div class="pt-3 border-t border-sand-100">
+            <span class="text-[11px] text-stone-400 uppercase font-bold tracking-wider">First Session Match:</span>
+            <p id="summary-class-name" class="font-bold text-stone-800 text-xs mt-0.5">Fatima's Candlelight Yin & Sound</p>
+            <p id="summary-schedule" class="text-xs text-sage-800 font-semibold mt-0.5">Tomorrow, Nov 13 at 09:30 AM</p>
+          </div>
+
+          <!-- Selected Perks List -->
+          <div class="pt-3 border-t border-sand-100">
+            <span class="text-[11px] text-stone-400 uppercase font-bold tracking-wider">Studio Amenities:</span>
+            <ul id="summary-perks-list" class="mt-1.5 space-y-1">
+              <li class="flex justify-between items-center text-xs text-stone-600">
+                <span>Jade Eco Mat & Bolster</span>
+                <span class="font-semibold text-sage-700">FREE</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Promo Code Discount Row -->
+          <div id="summary-discount-row" class="hidden pt-2 text-xs flex justify-between items-center text-terracotta-600 font-bold">
+            <span>Special Promo Discount:</span>
+            <span id="summary-discount-amount">-$0.00</span>
+          </div>
+
+          <!-- Total Calculation -->
+          <div class="pt-4 border-t-2 border-dashed border-sand-200 flex justify-between items-baseline">
+            <span class="text-sm font-bold text-stone-900">Total Investment:</span>
+            <span id="summary-total-price" class="text-3xl font-serif font-bold text-stone-900">$39.00</span>
+          </div>
+
+          <!-- Navigation Action Buttons -->
+          <div class="pt-2 space-y-2">
+            <button 
+              type="button" 
+              id="btn-next-step" 
+              class="w-full py-3.5 px-4 rounded-2xl bg-sage-800 hover:bg-sage-900 text-white font-bold text-sm shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
+            >
+              <span>Continue to Step 2</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+
+            <button 
+              type="button" 
+              id="btn-prev-step" 
+              class="w-full py-2.5 px-4 rounded-xl text-stone-500 hover:text-stone-800 text-xs font-medium transition"
+              style="visibility: hidden;"
+            >
+              ← Back to Previous Step
+            </button>
+          </div>
+
+          <!-- Studio Trust Guarantee -->
+          <div class="pt-3 border-t border-sand-100 flex items-center gap-2 text-[11px] text-stone-500">
+            <i data-lucide="shield-check" class="w-4 h-4 text-sage-700 flex-shrink-0"></i>
+            <span>No long-term contract. Cancel anytime. Full studio satisfaction guarantee.</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- =========================================================================
+         SUCCESS CONFIRMATION & DIGITAL STUDIO PASS SCREEN (Hidden by default)
+         ========================================================================= -->
+    <div id="booking-success-container" class="hidden max-w-3xl mx-auto mt-10">
+      
+      <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-2xl border-2 border-sage-200 text-center space-y-6">
+        
+        <!-- Success Badge -->
+        <div class="w-16 h-16 rounded-full bg-sage-100 text-sage-800 flex items-center justify-center mx-auto shadow-inner">
+          <i data-lucide="check-circle-2" class="w-10 h-10 text-sage-700"></i>
+        </div>
+
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-terracotta-500">Namaste & Welcome to Fatima Studio</span>
+          <h3 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900 mt-1">Your Studio Pass is Active!</h3>
+          <p class="text-sm text-stone-600 max-w-md mx-auto mt-2">
+            We are honored to welcome you onto the mat. Your confirmation receipt has been dispatched to your email.
+          </p>
+        </div>
+
+        <!-- Printable Digital Studio Pass Card -->
+        <div id="digital-pass-card" class="bg-gradient-to-br from-sand-50 to-sand-100 border-2 border-sand-300 rounded-3xl p-6 sm:p-8 text-left shadow-md relative overflow-hidden">
+          
+          <!-- Decorative Background Watermark -->
+          <div class="absolute -right-8 -bottom-8 w-44 h-44 rounded-full bg-sage-200/40 pointer-events-none -z-0"></div>
+
+          <div class="relative z-10 space-y-6">
+            
+            <!-- Pass Card Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-sand-300">
+              <div>
+                <span class="text-xs uppercase tracking-widest font-bold text-sage-900">FATIMA STUDIO SANCTUARY</span>
+                <p class="text-lg font-serif font-bold text-stone-900">Official Practitioner Pass</p>
+              </div>
+              <div class="text-right">
+                <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-sage-800 text-white shadow-sm">
+                  ACTIVE & CONFIRMED
+                </span>
+                <p class="text-[11px] text-stone-500 mt-0.5">Ref: <span id="pass-booking-ref" class="font-mono font-bold text-stone-800">FATIMA-8910</span></p>
+              </div>
+            </div>
+
+            <!-- Pass Card Details Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+              <div>
+                <span class="text-stone-400 uppercase font-semibold">Practitioner Name:</span>
+                <p id="pass-holder-name" class="text-sm font-bold text-stone-900 mt-0.5">Fatima Al-Mansoor</p>
+              </div>
+              <div>
+                <span class="text-stone-400 uppercase font-semibold">Email:</span>
+                <p id="pass-holder-email" class="text-sm font-medium text-stone-800 mt-0.5">fatima@example.com</p>
+              </div>
+              <div>
+                <span class="text-stone-400 uppercase font-semibold">Pass Type:</span>
+                <p id="pass-tier-name" class="text-sm font-bold text-terracotta-500 mt-0.5">7-Day Unlimited Intro Pass</p>
+              </div>
+              <div>
+                <span class="text-stone-400 uppercase font-semibold">First Practice:</span>
+                <p id="pass-class-name" class="text-sm font-bold text-stone-900 mt-0.5">Candlelight Yin & Crystal Sound Bath</p>
+                <p id="pass-date-time" class="text-sage-800 font-semibold mt-0.5">Tomorrow, Nov 13 at 09:30 AM</p>
+              </div>
+              <div class="sm:col-span-2">
+                <span class="text-stone-400 uppercase font-semibold">Lead Guide:</span>
+                <p id="pass-instructor" class="text-sm font-medium text-stone-800 mt-0.5">Fatima (Founder & Master Guide)</p>
+              </div>
+            </div>
+
+            <!-- QR Code Simulation & Studio Address -->
+            <div class="pt-4 border-t border-sand-300 flex items-center justify-between">
+              <div class="text-[11px] text-stone-500 space-y-0.5">
+                <p class="font-bold text-stone-800">Fatima Studio Sanctuary</p>
+                <p>108 Serenity Boulevard, Level 2 • Lotus Courtyard</p>
+                <p>Complimentary Jade Eco Mat is sanitized & reserved for you.</p>
+              </div>
+              
+              <!-- Simulated QR Code SVG -->
+              <div class="w-16 h-16 bg-white p-1.5 rounded-xl border border-sand-300 shadow-sm flex items-center justify-center">
+                <svg viewBox="0 0 100 100" class="w-full h-full text-stone-900">
+                  <rect x="5" y="5" width="25" height="25" fill="currentColor"/>
+                  <rect x="10" y="10" width="15" height="15" fill="white"/>
+                  <rect x="13" y="13" width="9" height="9" fill="currentColor"/>
+                  <rect x="70" y="5" width="25" height="25" fill="currentColor"/>
+                  <rect x="75" y="10" width="15" height="15" fill="white"/>
+                  <rect x="78" y="13" width="9" height="9" fill="currentColor"/>
+                  <rect x="5" y="70" width="25" height="25" fill="currentColor"/>
+                  <rect x="10" y="75" width="15" height="15" fill="white"/>
+                  <rect x="13" y="78" width="9" height="9" fill="currentColor"/>
+                  <rect x="40" y="10" width="10" height="20" fill="currentColor"/>
+                  <rect x="40" y="40" width="20" height="20" fill="currentColor"/>
+                  <rect x="70" y="40" width="10" height="10" fill="currentColor"/>
+                  <rect x="40" y="70" width="20" height="15" fill="currentColor"/>
+                  <rect x="70" y="70" width="15" height="15" fill="currentColor"/>
+                </svg>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Action CTAs: Add to Calendar, Print, Start Fresh -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 no-print">
+          <button 
+            type="button" 
+            id="btn-add-to-calendar" 
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs font-semibold bg-sage-800 hover:bg-sage-900 text-white shadow-md transition"
+          >
+            <i data-lucide="calendar" class="w-4 h-4"></i>
+            <span>Add to Calendar (.ics)</span>
+          </button>
+
+          <button 
+            type="button" 
+            id="btn-print-pass" 
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs font-semibold bg-sand-200 hover:bg-sand-300 text-stone-800 transition"
+          >
+            <i data-lucide="printer" class="w-4 h-4"></i>
+            <span>Print or Save Pass</span>
+          </button>
+
+          <button 
+            type="button" 
+            id="btn-reset-journey" 
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs font-semibold text-stone-500 hover:text-stone-800 transition"
+          >
+            <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+            <span>Book for a Friend</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- THE SANCTUARY & ATMOSPHERE SECTION -->
+  <section id="about" class="py-20 bg-sand-100/60 border-t border-sand-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-terracotta-500">The Fatima Studio Space</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900 mt-2">
+          Designed for Stillness, Air Purity & Renewal
+        </h2>
+        <p class="text-stone-600 text-base mt-3">
+          Every inch of Fatima Studio is thoughtfully curated to soothe your sensory system the moment you take off your shoes.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="p-6 rounded-3xl bg-white border border-sand-200 shadow-sm hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-2xl bg-terracotta-500/10 text-terracotta-500 flex items-center justify-center mb-4">
+            <i data-lucide="sun" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-serif font-bold text-stone-900">Infrared Warmth</h3>
+          <p class="text-xs text-stone-500 mt-2 leading-relaxed">
+            Radiant infrared waves warm your muscles directly rather than heating dry air, promoting deep cellular detox and joint flexibility.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-white border border-sand-200 shadow-sm hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-2xl bg-sage-100 text-sage-800 flex items-center justify-center mb-4">
+            <i data-lucide="shield" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-serif font-bold text-stone-900">Hospital-Grade HEPA</h3>
+          <p class="text-xs text-stone-500 mt-2 leading-relaxed">
+            Continuous medical-grade air filtration and gentle ultraviolet sanitization exchange the room’s air every 8 minutes.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-white border border-sand-200 shadow-sm hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mb-4">
+            <i data-lucide="sparkles" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-serif font-bold text-stone-900">Sound Alchemy</h3>
+          <p class="text-xs text-stone-500 mt-2 leading-relaxed">
+            Acoustically tuned Tibetan bronze and pure quartz crystal singing bowls calibrated to 432Hz to align brainwave frequencies.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-white border border-sand-200 shadow-sm hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-2xl bg-sand-200 text-stone-700 flex items-center justify-center mb-4">
+            <i data-lucide="droplet" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-serif font-bold text-stone-900">Eucalyptus Showers</h3>
+          <p class="text-xs text-stone-500 mt-2 leading-relaxed">
+            Rainfall showers stocked with natural botanical oils, plush cotton towels, and private dressing vanity areas.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CLASS STYLES DEEP DIVE -->
+  <section id="classes" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-terracotta-500">Curated Practices</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900 mt-2">Class Offerings at Fatima Studio</h2>
+      </div>
+      <a href="#interactive-journey" class="scroll-to-journey mt-4 md:mt-0 text-sm font-semibold text-terracotta-500 hover:text-terracotta-600 flex items-center gap-1">
+        <span>Find your recommended match</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Class 1 -->
+      <div class="bg-white rounded-3xl overflow-hidden border border-sand-200 shadow-sm hover:shadow-lg transition">
+        <div class="h-44 bg-stone-200 relative">
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" alt="Yin yoga" class="w-full h-full object-cover">
+          <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/90 text-stone-800 backdrop-blur-sm">
+            Restorative
+          </span>
+        </div>
+        <div class="p-5 space-y-2">
+          <h3 class="font-serif font-bold text-lg text-stone-900">Candlelight Yin & Sound</h3>
+          <p class="text-xs text-stone-500 leading-relaxed">Passive floor poses held for 3–5 minutes targeting connective tissue and joints, bathed in quartz sound resonance.</p>
+          <div class="pt-3 border-t border-sand-100 flex items-center justify-between text-xs text-stone-600">
+            <span>60 mins</span>
+            <span class="text-sage-800 font-semibold">Gentle</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Class 2 -->
+      <div class="bg-white rounded-3xl overflow-hidden border border-sand-200 shadow-sm hover:shadow-lg transition">
+        <div class="h-44 bg-stone-200 relative">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80" alt="Solar Vinyasa" class="w-full h-full object-cover">
+          <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/90 text-stone-800 backdrop-blur-sm">
+            Signature Flow
+          </span>
+        </div>
+        <div class="p-5 space-y-2">
+          <h3 class="font-serif font-bold text-lg text-stone-900">Sacred Solar Vinyasa</h3>
+          <p class="text-xs text-stone-500 leading-relaxed">Dynamic breath-to-movement sequences, intentional sun salutations, core balances, and grounding savasana.</p>
+          <div class="pt-3 border-t border-sand-100 flex items-center justify-between text-xs text-stone-600">
+            <span>60 mins</span>
+            <span class="text-amber-700 font-semibold">All Levels</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Class 3 -->
+      <div class="bg-white rounded-3xl overflow-hidden border border-sand-200 shadow-sm hover:shadow-lg transition">
+        <div class="h-44 bg-stone-200 relative">
+          <img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?auto=format&fit=crop&w=600&q=80" alt="Infrared flow" class="w-full h-full object-cover">
+          <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/90 text-stone-800 backdrop-blur-sm">
+            Heated 90°F
+          </span>
+        </div>
+        <div class="p-5 space-y-2">
+          <h3 class="font-serif font-bold text-lg text-stone-900">Infrared Prāṇa Sculpt</h3>
+          <p class="text-xs text-stone-500 leading-relaxed">Athletic yoga postures combined with high-radiance infrared panels to boost metabolic fire and deep sweat.</p>
+          <div class="pt-3 border-t border-sand-100 flex items-center justify-between text-xs text-stone-600">
+            <span>50 mins</span>
+            <span class="text-terracotta-600 font-semibold">Energetic</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Class 4 -->
+      <div class="bg-white rounded-3xl overflow-hidden border border-sand-200 shadow-sm hover:shadow-lg transition">
+        <div class="h-44 bg-stone-200 relative">
+          <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?auto=format&fit=crop&w=600&q=80" alt="Pranayama meditation" class="w-full h-full object-cover">
+          <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/90 text-stone-800 backdrop-blur-sm">
+            Breath & Mind
+          </span>
+        </div>
+        <div class="p-5 space-y-2">
+          <h3 class="font-serif font-bold text-lg text-stone-900">Pranayama & Stillness</h3>
+          <p class="text-xs text-stone-500 leading-relaxed">Conscious respiratory techniques to clear the vagus nerve, soothe anxiety, and anchor meditative focus.</p>
+          <div class="pt-3 border-t border-sand-100 flex items-center justify-between text-xs text-stone-600">
+            <span>45 mins</span>
+            <span class="text-sage-800 font-semibold">Meditative</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MEET FOUNDER FATIMA & SENIOR GUIDES -->
+  <section id="instructors" class="py-20 bg-sand-100/60 border-t border-sand-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-terracotta-500">Our Guides</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900 mt-2">
+          Guided by Compassion & Deep Practice
+        </h2>
+        <p class="text-stone-600 text-base mt-3">
+          Every guide at Fatima Studio holds senior certifications (E-RYT 500) and brings an inclusive, non-judgmental warmth to every class.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Guide: Fatima -->
+        <div class="bg-white rounded-3xl p-6 border-2 border-terracotta-400/40 shadow-md text-center space-y-3 relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-bold bg-terracotta-500 text-white uppercase tracking-wider">
+            Founder & Master Guide
+          </div>
+          <div class="w-24 h-24 rounded-full mx-auto overflow-hidden border-2 border-terracotta-500/30 mt-2">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" alt="Fatima" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <h3 class="font-serif font-bold text-lg text-stone-900">Fatima</h3>
+            <p class="text-xs text-terracotta-600 font-medium">Founder • E-RYT 500 & Sound Healer</p>
+          </div>
+          <p class="text-xs text-stone-500 italic leading-relaxed">
+            "Yoga is not about touching your toes; it is about what you learn on the way down."
+          </p>
+        </div>
+
+        <!-- Guide: Elena -->
+        <div class="bg-white rounded-3xl p-6 border border-sand-200 shadow-sm text-center space-y-3">
+          <div class="w-24 h-24 rounded-full mx-auto overflow-hidden border-2 border-sand-200">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Elena" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <h3 class="font-serif font-bold text-lg text-stone-900">Elena Vance</h3>
+            <p class="text-xs text-sage-800 font-medium">Yin & Somatic Restorative</p>
+          </div>
+          <p class="text-xs text-stone-500 italic leading-relaxed">
+            Specializing in nervous system recalibration and fascia release.
+          </p>
+        </div>
+
+        <!-- Guide: Marcus -->
+        <div class="bg-white rounded-3xl p-6 border border-sand-200 shadow-sm text-center space-y-3">
+          <div class="w-24 h-24 rounded-full mx-auto overflow-hidden border-2 border-sand-200">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Marcus" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <h3 class="font-serif font-bold text-lg text-stone-900">Marcus Reed</h3>
+            <p class="text-xs text-stone-600 font-medium">Infrared Flow & Athletic Conditioning</p>
+          </div>
+          <p class="text-xs text-stone-500 italic leading-relaxed">
+            Bringing anatomical precision and uplifting energy to every sweat session.
+          </p>
+        </div>
+
+        <!-- Guide: Kavi -->
+        <div class="bg-white rounded-3xl p-6 border border-sand-200 shadow-sm text-center space-y-3">
+          <div class="w-24 h-24 rounded-full mx-auto overflow-hidden border-2 border-sand-200">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" alt="Kavi" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <h3 class="font-serif font-bold text-lg text-stone-900">Kavi Sharma</h3>
+            <p class="text-xs text-stone-600 font-medium">Himalayan Breathwork & Meditation</p>
+          </div>
+          <p class="text-xs text-stone-500 italic leading-relaxed">
+            Trained in Rishikesh with over 12 years of traditional Vedic immersion.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (COMMUNITY VOICES) -->
+  <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-xs font-bold uppercase tracking-widest text-terracotta-500">Sanctuary Voices</span>
+      <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900 mt-2">Loved by Over 3,800 Practitioners</h2>
+      <p class="text-stone-600 text-base mt-3">Hear how Fatima Studio has helped our community find calm and physical vitality.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Review 1 -->
+      <div class="bg-white p-7 rounded-3xl border border-sand-200 shadow-sm space-y-4">
+        <div class="text-amber-500 text-sm">★★★★★</div>
+        <p class="text-sm text-stone-700 italic leading-relaxed">
+          "Walking into Fatima Studio feels like taking off a heavy coat. The Candlelight Yin class with Fatima's crystal sound bowls completely healed my insomnia."
+        </p>
+        <div class="pt-4 border-t border-sand-100 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-sand-200 flex items-center justify-center font-bold text-xs text-stone-700">SA</div>
+          <div>
+            <p class="text-xs font-bold text-stone-900">Soraya Al-Hassan</p>
+            <p class="text-[11px] text-stone-500">Practicing 8 Months • Verified Member</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="bg-white p-7 rounded-3xl border border-sand-200 shadow-sm space-y-4">
+        <div class="text-amber-500 text-sm">★★★★★</div>
+        <p class="text-sm text-stone-700 italic leading-relaxed">
+          "The multi-step intro pass made starting so effortless. Having the mat ready and reserved with a cold lavender towel after class is pure luxury."
+        </p>
+        <div class="pt-4 border-t border-sand-100 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-sand-200 flex items-center justify-center font-bold text-xs text-stone-700">JM</div>
+          <div>
+            <p class="text-xs font-bold text-stone-900">Jessica Miller</p>
+            <p class="text-[11px] text-stone-500">7-Day Intro Graduate</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="bg-white p-7 rounded-3xl border border-sand-200 shadow-sm space-y-4">
+        <div class="text-amber-500 text-sm">★★★★★</div>
+        <p class="text-sm text-stone-700 italic leading-relaxed">
+          "The infrared heat is so gentle compared to other hot yoga studios. My joints feel energized and I leave every session with a clear, peaceful mind."
+        </p>
+        <div class="pt-4 border-t border-sand-100 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-sand-200 flex items-center justify-center font-bold text-xs text-stone-700">DK</div>
+          <div>
+            <p class="text-xs font-bold text-stone-900">David Kwon</p>
+            <p class="text-[11px] text-stone-500">Unlimited Sanctuary Member</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION -->
+  <section id="faq" class="py-20 bg-sand-100/60 border-t border-sand-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-terracotta-500">Everything You Need to Know</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900 mt-2">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="space-y-4">
+        
+        <div class="bg-white rounded-2xl border border-sand-200 overflow-hidden">
+          <button type="button" class="faq-toggle w-full px-6 py-4 text-left font-bold text-stone-900 flex justify-between items-center text-sm sm:text-base" aria-expanded="false">
+            <span>What should I bring to my first class at Fatima Studio?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-stone-400 transition-transform"></i>
+          </button>
+          <div class="hidden px-6 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-sand-100 pt-3">
+            Just bring comfortable clothing you can move freely in and a water bottle. Your Jade Eco Mat and bolsters are reserved and sanitized for you free of charge with all intro passes. We have filtered alkaline water stations and herbal teas available in the lounge.
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-sand-200 overflow-hidden">
+          <button type="button" class="faq-toggle w-full px-6 py-4 text-left font-bold text-stone-900 flex justify-between items-center text-sm sm:text-base" aria-expanded="false">
+            <span>I have never practiced yoga before. Will I feel out of place?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-stone-400 transition-transform"></i>
+          </button>
+          <div class="hidden px-6 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-sand-100 pt-3">
+            Not at all! Over 40% of our new community members are first-time yogis. Fatima and all our guides offer gentle verbal modifications, prop variations, and a pressure-free environment where rest is always encouraged.
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-sand-200 overflow-hidden">
+          <button type="button" class="faq-toggle w-full px-6 py-4 text-left font-bold text-stone-900 flex justify-between items-center text-sm sm:text-base" aria-expanded="false">
+            <span>How does the 7-Day Unlimited Intro Pass work?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-stone-400 transition-transform"></i>
+          </button>
+          <div class="hidden px-6 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-sand-100 pt-3">
+            Your 7 days begin on the date of your first attended class, not the day of booking. You can attend unlimited regular classes during those 7 days, and you also receive one complimentary guest pass to bring a friend with you!
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-sand-200 overflow-hidden">
+          <button type="button" class="faq-toggle w-full px-6 py-4 text-left font-bold text-stone-900 flex justify-between items-center text-sm sm:text-base" aria-expanded="false">
+            <span>What is your cancellation and rescheduling policy?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-stone-400 transition-transform"></i>
+          </button>
+          <div class="hidden px-6 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-sand-100 pt-3">
+            You can reschedule or cancel any class booking penalty-free up to 2 hours prior to the scheduled start time directly from your email confirmation or pass portal.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FINAL CTA STRIP -->
+  <section class="py-16 bg-sage-900 text-sand-100 text-center relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 relative z-10 space-y-6">
+      <h2 class="text-3xl sm:text-4xl font-serif font-bold text-sand-50">Your Mat is Waiting at Fatima Studio</h2>
+      <p class="text-sm sm:text-base text-sand-200/90 max-w-xl mx-auto">
+        Begin your journey today with our 7-Day Unlimited Intro Pass for only $39. Experience the healing synergy of movement, breath, and sound.
+      </p>
+      <a href="#interactive-journey" class="scroll-to-journey inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold text-white bg-terracotta-500 hover:bg-terracotta-600 shadow-xl transition-all transform hover:-translate-y-0.5">
+        <span>Claim Your Fatima Studio Intro Pass</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-stone-950 text-sand-200 py-16 border-t border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+        
+        <!-- Col 1: Studio info -->
+        <div class="space-y-4 md:col-span-1">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-sage-800 text-sand-100 flex items-center justify-center font-bold">
+              FS
+            </div>
+            <span class="text-xl font-serif font-bold tracking-widest text-white">FATIMA STUDIO</span>
+          </div>
+          <p class="text-xs text-stone-400 leading-relaxed">
+            A sanctuary for mindful yoga movement, restorative sound alchemy, infrared warmth, and community connection.
+          </p>
+          <div class="text-xs text-stone-400">
+            <p class="font-semibold text-sand-100">Location:</p>
+            <p>108 Serenity Boulevard, Level 2</p>
+            <p>Lotus Courtyard District</p>
+          </div>
+        </div>
+
+        <!-- Col 2: Hours -->
+        <div class="space-y-2 text-xs">
+          <h4 class="font-bold text-white uppercase tracking-wider text-sm mb-3">Sanctuary Hours</h4>
+          <p><strong class="text-sand-100">Monday – Friday:</strong> 6:30 AM – 9:00 PM</p>
+          <p><strong class="text-sand-100">Saturday:</strong> 7:30 AM – 8:00 PM</p>
+          <p><strong class="text-sand-100">Sunday:</strong> 8:00 AM – 7:30 PM</p>
+          <p class="text-stone-500 pt-2">Tea lounge opens 30 minutes before first class.</p>
+        </div>
+
+        <!-- Col 3: Quick Navigation -->
+        <div class="space-y-2 text-xs">
+          <h4 class="font-bold text-white uppercase tracking-wider text-sm mb-3">Explore</h4>
+          <p><a href="#interactive-journey" class="hover:text-white transition">5-Step Pass Booking</a></p>
+          <p><a href="#classes" class="hover:text-white transition">Class Styles & Formats</a></p>
+          <p><a href="#breathing-pause" class="hover:text-white transition">4-7-8 Breathing Pacer</a></p>
+          <p><a href="#instructors" class="hover:text-white transition">Meet Founder Fatima</a></p>
+          <p><a href="#faq" class="hover:text-white transition">New Yogi FAQ</a></p>
+        </div>
+
+        <!-- Col 4: Newsletter -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-white uppercase tracking-wider text-sm">Mindful Dispatch</h4>
+          <p class="text-xs text-stone-400">Subscribe for weekly sound meditations, workshop announcements, and wellness essays.</p>
+          <div class="flex gap-2">
+            <input type="email" placeholder="Your email address" class="px-3 py-2 rounded-xl bg-stone-900 border border-stone-800 text-xs text-white focus:outline-none focus:ring-1 focus:ring-sage-700 flex-1">
+            <button type="button" class="px-4 py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">Join</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-stone-900 text-center text-xs text-stone-600 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p>© 2026 Fatima Studio. All rights reserved. Built with love and intention.</p>
+        <div class="flex gap-6 text-stone-500">
+          <a href="#" class="hover:text-sand-100 transition">Privacy Policy</a>
+          <a href="#" class="hover:text-sand-100 transition">Terms of Service</a>
+          <a href="#" class="hover:text-sand-100 transition">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    // Initialize Lucide Icons
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
